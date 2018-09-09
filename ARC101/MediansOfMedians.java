@@ -9,13 +9,11 @@ class Main {
             a[i] = sc.nextInt();
         }
         sc.close();
+        int maxim = 1000000001;
 
-
-        int ans = 1;
+        int ans = bSearch(0, maxim, a);
         
-        System.out.println(ans);
-
-        
+        System.out.println(ans);        
     }
     
     /*
@@ -125,18 +123,9 @@ class Main {
         ans.value = leftP.value + rightP.value + mergeP.value;
         return(ans);
     }
-
- 
-
-    
-
-
-    
-}
+  }
 
 class MyPair{
     public int value;
     public int[] list;
 }
-
-
