@@ -21,15 +21,25 @@ class Main {
     /*
     条件を満たすxの最大値をにぶたんで求める
     */
-    public static int bSearch(int ok,int ng,int[] numbers, int n){
-        return 1;
+    public static int bSearch(int ok,int ng,int[] numbers){
+        if(ng == ok + 1){
+            return(ok);
+        } else {
+            int mid = (ok+ng)/2;
+            if(judge(mid, numbers)) {
+                return(bSearch(mid, ng, numbers));
+            } else {
+                return(bSearch(ok, mid, numbers));
+            }
+        }
     }
 
-    public static boolean judge(int x, int[] numbers, int n){
+    public static boolean judge(int x, int[] numbers){
         /*
         int xが条件を満たすかどうか判定する
         条件：x以上のmedian yが半数以上存在する
         */
+        int n = numbers.length;
         int[] cums = new int[n+1];
         cums[0] = 0;
         for(int i=0;i<n;i++){
@@ -42,7 +52,8 @@ class Main {
         //転倒数が全区間数の半分以下
         int half = (n+1)*n/4;
         int invNumber = 0;
-        //invNumber = invNum(cums);
+        MyPair msort = invNum(cums);
+        invNumber = msort.value;
         if(invNumber <= half) {
             return(true);
         } else {
