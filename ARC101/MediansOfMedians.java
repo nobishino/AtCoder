@@ -50,6 +50,42 @@ class Main {
         }
     }
 
+    //left, rightはそれぞれソート済み
+    private static MyPair merge(int[] left, int[] right){
+        int l = left.length;
+        int r = right.length;
+        int i = 0;
+        int j = 0;
+        int ansValue = 0;
+        int[] ansList = new int[l+r];
+        int index = 0;
+        while(i < l && j < r){
+            if(left[i] <= right[j]) {
+                ansList[index] = left[i];
+                i++;
+            } else {
+                ansList[index] = right[j];
+                j++;
+                ansValue += l-i;
+            }
+            index++;
+        }
+        while(i < l){
+            ansList[index] = left[i];
+            index++;
+            i++;
+        }
+        while(j < r){
+            ansList[index] = right[j];
+            index++;
+            j++;
+        }
+        MyPair ans = new MyPair();
+        ans.list = ansList;
+        ans.value = ansValue;
+        return(ans);
+    }
+
  
 
     
@@ -62,4 +98,5 @@ class MyPair{
     public int value;
     public int[] list;
 }
+
 
