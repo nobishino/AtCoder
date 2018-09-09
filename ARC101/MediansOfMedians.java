@@ -86,6 +86,35 @@ class Main {
         return(ans);
     }
 
+    private static MyPair invNum(int[] numbers) {
+        int l = numbers.length;
+        MyPair ans = new MyPair();
+        
+        //基底部
+        if(l <= 1){
+            ans.value = 0;
+            ans.list = numbers;
+            return(ans);
+        }
+        // l>=2の場合は分割統治
+        int half = l/2;
+        int[] left = new int[half];
+        int[] right = new int[l-half];
+        for(int i=0;i<l;i++) {
+            if(i < half){
+                left[i]=numbers[i];
+            } else {
+                right[i-half]=numbers[i];
+            }
+        }
+        MyPair leftP = invNum(left);
+        MyPair rightP = invNum(right);
+        MyPair mergeP = merge(leftP.list,rightP.list);
+        ans.list = mergeP.list;
+        ans.value = leftP.value + rightP.value + mergeP.value;
+        return(ans);
+    }
+
  
 
     
