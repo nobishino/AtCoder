@@ -48,7 +48,7 @@ class Main {
             }
         }
         //転倒数が全区間数の半分以下
-        int half = (n+1)*n/4;
+        int half = (((n+1)*n)/2)/2;
         int invNumber = 0;
         MyPair msort = invNum(cums);
         invNumber = msort.value;
