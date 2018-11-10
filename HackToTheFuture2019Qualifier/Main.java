@@ -17,6 +17,7 @@ class Main{
     static final long timeLimit = 2500;
     static long startTime;
     static long endTime;
+    static int repetition=1;
     public static void main(String[] args){
         startTime = System.currentTimeMillis();
         endTime = startTime + timeLimit;
@@ -24,6 +25,7 @@ class Main{
         init();
         solve();
         output();
+//        System.out.println(repetition);
         //printCount();
 //        System.out.println(score);
     }
@@ -33,11 +35,16 @@ class Main{
      //   countTable = p.ctable;
     }
     public static void solve() {
-        while(System.currentTimeMillis() < endTime){
-            deviate();
+        double startBeta = 0.02;
+        double endBeta = 30;
+        long mill = endTime - System.currentTimeMillis();
+        while(mill>0){
+            deviate((mill*startBeta + (timeLimit-mill)*endBeta)/timeLimit);
+            mill = endTime - System.currentTimeMillis();
         }
     }
-    public static void deviate(){
+    public static void deviate(double beta){
+        repetition++;
         int i = rnd.nextInt(m-2);
         int j = rnd.nextInt(m-2);
         int currentBulk = bulk[i][j];
@@ -51,7 +58,12 @@ class Main{
             score = newScore;
             //countTable = newPair.ctable;
         } else {
-            bulk[i][j] = currentBulk;
+            int diff = score - newScore;
+            if ((Math.exp(-beta*diff)) > rnd.nextFloat()) {
+                score = newScore;
+            } else {
+                bulk[i][j] = currentBulk;
+            }
         }
     }
     //static String[] dict = {".","D","T","L","R","#"};
@@ -112,7 +124,8 @@ class Main{
             }
         count[x][y]++;
         }
-        int score = evaluate(count);
+        //int score = evaluate(count);
+        int score = evalSmooth(count);
         return(score);
         //return(new Pair(score,count));
     }
@@ -129,6 +142,24 @@ class Main{
                     s += 1;
                 } else {
                     //
+                }
+            }
+        }
+        return(s);
+    }
+    public static int evalSmooth(int[][] c){
+        int s = 0;
+        for(int i=0;i<m-2;i++){
+            for(int j=0;j<m-2;j++){
+                int num = c[i][j];
+                if(num==1){
+                    s += 100;
+                } else if(num==2){
+                    s += 30;
+                } else if(num==3){
+                    s += 10;
+                } else {
+                    s -= 20*num;
                 }
             }
         }
