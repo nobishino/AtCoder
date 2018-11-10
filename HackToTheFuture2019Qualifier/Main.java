@@ -14,10 +14,9 @@ class Main{
     static int y=13;
     static int score;
     static int[][] countTable = new int[m-2][m-2];
-    static final long timeLimit = 2000;
+    static final long timeLimit = 2500;
     static long startTime;
     static long endTime;
-    static long repetition=1;
     public static void main(String[] args){
         startTime = System.currentTimeMillis();
         endTime = startTime + timeLimit;
@@ -29,45 +28,34 @@ class Main{
 //        System.out.println(score);
     }
     public static void init(){
-        Pair p = simulate();
-        score = p.score;
-        countTable = p.ctable;
+      //  Pair p = simulate();
+        score = simulate();
+     //   countTable = p.ctable;
     }
     public static void solve() {
         while(System.currentTimeMillis() < endTime){
             deviate();
         }
     }
-    public static void randomOrEmpty(){
-        for (int i=0;i<m-2;i++){
-            for(int j=0;j<m-2;j++){
-                bulk[i][j] = rnd.nextInt(6); //0-5 integer
-            }
-        }
-        int newscore = simulate().score;
-        if (newscore < score){
-            bulk = new int[m-2][m-2];
-        }
-    }
     public static void deviate(){
-        repetition++;
         int i = rnd.nextInt(m-2);
         int j = rnd.nextInt(m-2);
         int currentBulk = bulk[i][j];
         int nextBulk = rnd.nextInt(6);
         while(nextBulk==currentBulk) nextBulk = rnd.nextInt(6);
         bulk[i][j] = nextBulk;
-        Pair newPair = simulate();
-        int newScore = newPair.score;
+        //Pair newPair = simulate();
+        //int newScore = newPair.score;
+        int newScore = simulate();
         if (newScore > score){
             score = newScore;
-            countTable = newPair.ctable;
+            //countTable = newPair.ctable;
         } else {
             bulk[i][j] = currentBulk;
         }
     }
     //static String[] dict = {".","D","T","L","R","#"};
-    public static Pair simulate(){
+    public static int simulate(){
         int[] dx = {1,0,-1,0};
         int[] dy = {0,1,0,-1};
         int[][] count = new int[m-2][m-2];
@@ -125,7 +113,8 @@ class Main{
         count[x][y]++;
         }
         int score = evaluate(count);
-        return(new Pair(score,count));
+        return(score);
+        //return(new Pair(score,count));
     }
     public static int evaluate(int[][] c){
         int s = 0;
