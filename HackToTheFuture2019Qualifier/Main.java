@@ -14,7 +14,7 @@ class Main{
     static int y=13;
     static int score;
     static int[][] countTable = new int[m-2][m-2];
-    static final long timeLimit = 2500;
+    static final long timeLimit = 2000;
     static long startTime;
     static long endTime;
     static long repetition=1;
@@ -23,10 +23,10 @@ class Main{
         endTime = startTime + timeLimit;
         input();
         init();
-        //solve();
+        solve();
         output();
         //printCount();
-        System.out.println(score);
+//        System.out.println(score);
     }
     public static void init(){
         Pair p = simulate();
