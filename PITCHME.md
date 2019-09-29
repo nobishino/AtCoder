@@ -1,15 +1,17 @@
-# AtCoder Solutions and Commentary by shino
+# AtCoder Commentary
+
+presented by nobishino
 
 ---
 
-## Slide 1
+ABC 142-B
 
 ```py
 N,K = map(int,input().split())
 h = list(map(int,input().split()))
-ans = 0
+answer = 0
 for value in h:
     if value >= K:
-        ans += 1
-print(ans)
+        answer += 1
+print(answer)
 ```
