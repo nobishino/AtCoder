@@ -18,7 +18,7 @@ print(answer)
 ```
 @snap[south span-100 text-gray text-08]
 @[1-2](You can step-and-ZOOM into fenced-code blocks, source files, and Github GIST.)
-@[3 zoom-13](Using GitPitch live code presenting with optional annotations.)
+@[3-3 zoom-13](Using GitPitch live code presenting with optional annotations.)
 @[4-7, zoom-12](This means no more switching between your slide deck and IDE on stage.)
 @snapend
 
