@@ -11,9 +11,7 @@ for i in range(N):
 print(" ".join(map(str,answers)))
 ```
 
-@snap
 @[1-2]
 @[3]
 @[4-5]
 @[6]
-@snapend
