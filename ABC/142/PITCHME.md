@@ -9,7 +9,9 @@
 - *With a little imagination...*
 - And **GitPitch Markdown**
 
----code=ABC/142/A.py&lang=py
+---?code=ABC/142/A.py&lang=py
 
+@snap[south span-100]
 @[1-3](ボイラープレート。使わないやつもテンプレに入れておく)
 @[5](test)
+@snapend
