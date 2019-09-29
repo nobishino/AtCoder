@@ -1,17 +1,19 @@
-# ABC142
+# ABC142-C
 
 ---
 
-### A:w
+```py
+N = int(input())
+A = list(map(int,input().split()))
+answers = [-1 for _ in range(N)]
+for i in range(N):
+    answers[A[i]-1] = i+1
+print(" ".join(map(str,answers)))
+```
 
-- You will be amazed
-- What you can achieve
-- *With a little imagination...*
-- And **GitPitch Markdown**
-
----?code=ABC/142/A.py&lang=py
-
-@snap[south span-100]
-@[1-3](ボイラープレート。使わないやつもテンプレに入れておく)
-@[5](test)
+@snap
+@[1-2]
+@[3]
+@[4-5]
+@[6]
 @snapend
