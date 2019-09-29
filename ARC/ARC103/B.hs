@@ -1,0 +1,1 @@
+main = getLine >>= print . (\n->if mod n 111 == 0 then n else 111*(div n 111 + 1)) . read
