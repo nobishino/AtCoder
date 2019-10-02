@@ -1,3 +1,7 @@
+import math,string,itertools,fractions,heapq,collections,re,array,bisect,sys,random,time
+sys.setrecursionlimit(10**7)
+inf = 10**20
+
 def eratosthenes(upperBound):
     """エラトステネスの篩アルゴリズムによって、upperBound以下の素数すべてからなるリストを計算する。
 
@@ -16,17 +20,17 @@ def eratosthenes(upperBound):
     isPrime = [True for _ in range(upperBound + 1)]
     isPrime[0] = isPrime[1] = False
     divider = 0
-    while divider <= upperBound:
+    while divider <= math.sqrt(upperBound):
         if isPrime[divider]:
-            primeNumbers.append(divider)
+            # primeNumbers.append(divider)
             multiple = 2* divider
             while multiple <= upperBound:
                 isPrime[multiple] = False
                 multiple += divider
         divider += 1
-    return(primeNumbers)
+    return [i for i in range(upperBound + 1) if isPrime[i]]
 
-primeNumberList = eratosthenes(100010)
+primeNumberList = eratosthenes(100)
 
 def factorize(number):
     """与えられた整数を素因数分解する。素因数とその指数を辞書として返却する。
@@ -50,9 +54,7 @@ def factorize(number):
                 exponents[primeNumber] = 1
     if number != 1:
         exponents[number] = 1
-
     return exponents
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
