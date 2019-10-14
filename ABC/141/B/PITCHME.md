@@ -18,11 +18,8 @@ solve string = if (tappable string)
 
 tappable :: String -> Bool 
 tappable = (/=0) . foldl helper 1
-
-
-
 ```
-@[2](">>= でつなぐのがなんとなくthenっぽい")
+@[2](>>= でつなぐのがなんとなくthenっぽい)
 
 ---
 
@@ -39,8 +36,17 @@ solve string = if (tappable string)
 
 tappable :: String -> Bool 
 tappable = (/=0) . foldl helper 1
-
-
-
 ```
-@[2-4]("do構文つかうとなんとなくasync/awaitっぽい")
+@[2-4](do構文つかうとなんとなくasync/awaitっぽい)
+
+---
+### helperの中身
+
+```hs
+helper :: Int -> Char -> Int
+helper  1 'L' = 0
+helper (-1) 'R' = 0
+helper 1 _ = -1
+helper (-1) _ = 1
+helper 0 _ = 0
+```
