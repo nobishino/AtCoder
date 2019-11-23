@@ -1,4 +1,4 @@
-N = int(input())
+  N = int(input())
 a = list(map(int,input().split()))
 import heapq
 heapq.heapify(a)
